@@ -35,4 +35,21 @@ app.post("/api/user", async (c) => {
   return c.json({ message: "User added successfully", refId });
 });
 
+// Fetch Simpsons characters
+app.get("/api/simpsons/characters", async (c) => {
+  try {
+    const response = await fetch("https://api.sampleapis.com/simpsons/characters");
+
+    if (!response.ok) {
+      return c.json({ error: "Failed to fetch Simpsons characters" }, 500);
+    }
+
+    const characters = await response.json();
+    return c.json(characters);
+  } catch (error) {
+    console.error("Error fetching Simpsons characters:", error);
+    return c.json({ error: "Internal server error" }, 500);
+  }
+});
+
 export default app;
