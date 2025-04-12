@@ -35,19 +35,19 @@ app.post("/api/user", async (c) => {
   return c.json({ message: "User added successfully", refId });
 });
 
-// Fetch Simpsons characters
-app.get("/api/simpsons/characters", async (c) => {
+// Fetch countries
+app.get("/api/countries", async (c) => {
   try {
-    const response = await fetch("https://api.sampleapis.com/simpsons/characters");
+    const response = await fetch("https://api.sampleapis.com/countries/countries");
 
     if (!response.ok) {
-      return c.json({ error: "Failed to fetch Simpsons characters" }, 500);
+      return c.json({ error: "Failed to fetch countries" }, 500);
     }
 
-    const characters = await response.json();
-    return c.json(characters);
+    const countries = await response.json();
+    return c.json(countries);
   } catch (error) {
-    console.error("Error fetching Simpsons characters:", error);
+    console.error("Error fetching countries:", error);
     return c.json({ error: "Internal server error" }, 500);
   }
 });
